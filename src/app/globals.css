@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --font-bebas:  'Bebas Neue', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: #05080F;
+  color: #fff;
+  font-family: var(--font-outfit);
+  overflow-x: hidden;
+}
+
+::selection { background: rgba(200,255,0,.3); color: #fff; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #05080F; }
+::-webkit-scrollbar-thumb { background: rgba(200,255,0,.3); border-radius: 2px; }
+
+/* Animated grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(200,255,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,255,0,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 20s linear infinite;
+}
+
+/* Noise grain overlay */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .022;
+  pointer-events: none;
+  z-index: 9990;
+}
+
+/* Input base */
+.form-input {
+  @apply w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-5 py-4
+         font-body text-base text-white outline-none
+         transition-all duration-300 placeholder:text-white/20;
+}
+.form-input:focus {
+  @apply border-lime bg-lime/[0.04] shadow-[0_0_0_3px_rgba(200,255,0,0.1)];
+}
+.form-input-error {
+  @apply border-pink shadow-[0_0_0_3px_rgba(255,45,120,0.15)];
+}
+.big-input {
+  @apply bg-transparent border-0 border-b-2 border-white/10 rounded-none px-0 py-3
+         font-display text-4xl md:text-5xl tracking-wide;
+}
+.big-input:focus {
+  @apply border-lime bg-transparent shadow-none;
+}
+
+/* Pill choice */
+.pill {
+  @apply px-5 py-2.5 border border-white/10 rounded-full text-sm font-medium
+         text-white/50 cursor-pointer transition-all duration-200 select-none;
+}
+.pill:hover {
+  @apply border-lime/40 text-lime bg-lime/5;
+}
+.pill-selected-lime   { @apply bg-lime border-lime text-dark font-bold scale-[1.03]; }
+.pill-selected-pink   { @apply bg-pink border-pink text-white font-bold scale-[1.03]; }
+.pill-selected-cyan   { @apply bg-cyan border-cyan text-dark font-bold scale-[1.03]; }
+.pill-selected-orange { @apply bg-orange border-orange text-white font-bold scale-[1.03]; }
+
+/* Buttons */
+.btn-primary {
+  @apply flex items-center justify-center gap-3
+         bg-lime text-dark font-display text-2xl tracking-wider
+         px-9 py-4 rounded-md cursor-pointer relative overflow-hidden
+         transition-all duration-200 border-none;
+}
+.btn-primary:hover {
+  @apply -translate-y-0.5 shadow-[0_16px_40px_rgba(200,255,0,0.3)];
+}
+.btn-back {
+  @apply flex items-center gap-2 bg-transparent border border-white/10
+         text-white/40 font-body text-sm font-semibold
+         px-6 py-3.5 rounded-md cursor-pointer transition-all duration-200;
+}
+.btn-back:hover { @apply border-white/30 text-white; }
+
+/* Step dot */
+.step-dot {
+  @apply w-10 h-10 rounded-full bg-dark3 border-2 border-white/10
+         flex items-center justify-center font-display text-base
+         text-white/30 flex-shrink-0 transition-all duration-300 relative z-10;
+}
+.step-dot-active {
+  @apply bg-lime border-lime text-dark scale-110
+         shadow-[0_0_28px_rgba(200,255,0,0.5)];
+}
+.step-dot-done {
+  @apply bg-dark3 border-lime text-lime;
+}
