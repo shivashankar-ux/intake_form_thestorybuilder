@@ -23,12 +23,10 @@ function launchConfetti() {
   }
 }
 
-export default function SuccessScreen({ waUrl }: SuccessProps) {
+export default function SuccessScreen({ waUrl: _ }: SuccessProps) {
   useEffect(() => {
     launchConfetti();
-    const t = setTimeout(() => window.open(waUrl, "_blank"), 1800);
-    return () => clearTimeout(t);
-  }, [waUrl]);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 z-10">
@@ -38,7 +36,6 @@ export default function SuccessScreen({ waUrl }: SuccessProps) {
         transition={{ type: "spring", stiffness: 200, damping: 15 }}
         className="w-28 h-28 rounded-full border-2 border-lime flex items-center justify-center mx-auto mb-8 relative"
       >
-        {/* Pulse rings */}
         <div className="absolute inset-[-12px] rounded-full border border-lime/20 animate-ring-pulse" />
         <div className="absolute inset-[-24px] rounded-full border border-lime/10 animate-[ringPulse_2s_ease_infinite_.4s]" />
         <motion.span
@@ -67,16 +64,7 @@ export default function SuccessScreen({ waUrl }: SuccessProps) {
         transition={{ delay: 0.4 }}
         className="text-lg text-white/50 max-w-sm mx-auto leading-relaxed mb-4"
       >
-        Your details are on their way to us. We&apos;ll review everything and WhatsApp you back within 24 hours. 🎉
-      </motion.p>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="text-sm text-white/25"
-      >
-        WhatsApp is opening automatically&hellip;
+        Your details are on their way to us. We&apos;ll review everything and get back to you within 24 hours. 🎉
       </motion.p>
     </section>
   );
